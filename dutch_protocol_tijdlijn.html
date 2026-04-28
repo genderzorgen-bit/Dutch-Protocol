@@ -365,9 +365,19 @@
           <div class="c-sub">Genderkliniek actief voor volwassenen vanaf 1972. Eerste genderteam 1973 onder Gooren.</div>
           <div class="c-tag">instelling</div>
         </div>
+        <div class="card purple" onclick="show('money')">
+          <div class="c-label">John Money</div>
+          <div class="c-sub">Grondlegger concept genderidentiteit. Oprichter eerste genderkliniek VS (Johns Hopkins, 1966). Kliniek gesloten 1979 wegens gebrek aan bewijs van effectiviteit.</div>
+          <div class="c-tag">historische context</div>
+        </div>
+        <div class="card green" onclick="show('mchugh')">
+          <div class="c-label">Paul McHugh</div>
+          <div class="c-sub">Sloot Johns Hopkins genderkliniek in 1979. Conclusie: behandeling toont geen aantoonbare verbetering van welbevinden. Reden: psychiatrische problemen verdwenen niet na ingreep.</div>
+          <div class="c-tag">kritiek · 1979</div>
+        </div>
         <div class="card purple" onclick="show('gooren')">
           <div class="c-label">Louis Gooren</div>
-          <div class="c-sub">Eerste hoogleraar transseksualiteit wereldwijd (1989). Oratie bijgewoond door John Money. Co-auteur voorstel GnRHa 1996.</div>
+          <div class="c-sub">Eerste hoogleraar transseksualiteit wereldwijd (1989). Studeerde bij John Money wiens kliniek in 1979 gesloten werd. Co-auteur voorstel GnRHa 1996.</div>
           <div class="c-tag">kernpersoon</div>
         </div>
         <div class="card purple" onclick="show('cohen')">
@@ -544,11 +554,23 @@ const data = {
     tags: ["macht"],
     body: "Centrum van alles. Genderkliniek actief voor volwassenen vanaf 1972. Eerste genderteam 1973, Gooren kreeg hier in 1977 de leiding. De kliniek had een goede reputatie waardoor medische zorg voor transgenders serieus werd genomen door zorgverzekeraars, politici en media. Jeugdafdeling groeide organisch: Cohen-Kettenis startte in Utrecht (1987) en verhuisde in 2002 naar VUmc. Heeft 70-90% marktaandeel in Nederlandse transgenderzorg. Publiceert tientallen papers per jaar — waarbij onderzoekers hun eigen werk evalueren."
   },
+  money: {
+    name: "John Money",
+    role: "Psycholoog · Johns Hopkins University, Baltimore",
+    tags: ["historische context"],
+    body: "Grondlegger van het concept 'genderidentiteit' — de these dat genderrol los staat van biologisch geslacht en sociaal aangeleerd kan worden. Oprichter van de eerste genderkliniek in de VS aan Johns Hopkins (1966). Zijn werk was het theoretische fundament voor de transgendergeneeskunde zoals die zich daarna ontwikkelde. Money werd later zwaar bekritiseerd vanwege zijn experimenten met de jongen David Reimer, aan wie hij zonder toestemming van ouders een meisjesidentiteit oplegde na een ongeluk bij de besnijdenis. Reimer pleegde in 2004 zelfmoord. Money's kliniek aan Johns Hopkins werd in 1979 gesloten door Paul McHugh, omdat follow-uponderzoek aantoonde dat de behandeling geen aantoonbare verbetering van welbevinden opleverde. Louis Gooren studeerde twee jaar bij Money in Baltimore voordat hij zijn eigen werk in Nederland opbouwde."
+  },
+  mchugh: {
+    name: "Paul McHugh",
+    role: "Psychiater · Johns Hopkins University",
+    tags: ["kritiek"],
+    body: "Hoofd psychiatrie aan Johns Hopkins vanaf 1975. Sloot in 1979 de genderkliniek van John Money — de eerste en toonaangevende genderkliniek in de VS. Reden: follow-uponderzoek door Jon Meyer toonde aan dat patiënten na de behandeling weinig verbetering lieten zien in welbevinden, interpersoonlijke relaties en psychisch functioneren. McHugh: 'My personal feeling is that surgery is not proper treatment for a psychiatric disorder, and it's clear to me that these patients have severe psychological problems that don't go away following surgery.' Dit was dezelfde conclusie die veertig jaar later het Cass Review (2024) en het Finse registeronderzoek (2026) opnieuw zouden trekken: psychiatrische problematiek verdwijnt niet door medische behandeling. Money was 'very unhappy' met de sluiting, maar de rest van het ziekenhuis stemde in. Johns Hopkins heropende de kliniek pas in 2017."
+  },
   gooren: {
     name: "Louis Gooren",
     role: "Psychiater/endocrinoloog · VUmc Amsterdam",
     tags: ["macht", "wetenschap"],
-    body: "Eerste hoogleraar transseksualiteit ter wereld, benoemd 1989 aan VUmc. Zijn inaugurele oratie werd bijgewoond door John Money (Johns Hopkins). Gooren beschouwde genderdysforie als een intersekse-aandoening: 'een tegenspraak tussen genetisch/gonadaal/genitaal geslacht en hersensgeslacht.' Co-auteur van het allereerste gepubliceerde voorstel voor puberteitsremming bij genderdysforie (1996). Illustratief: de 13-jarige Britse Fredd Foley reisde met zijn moeder naar Amsterdam en Utrecht om Gooren te ontmoeten rond de tijd van het eerste artikel (1996). Na terugkomst weigerde de Londense kliniek te behandelen. De moeder belde Gooren, die vervolgens een driemanands triptoreline-recept uitschreef — voor een kind in een ander land, dat hij kort voor de camera had ontmoet, tegen de wens van diens eigen psychiater in. Goorens uitspraak: 'If your child knows for sure he is transsexual, I would not let puberty happen.' Biggs (2022) concludeert: dit suggereert dat het beoordelingsproces niet altijd zo rigoureus was als in de gepubliceerde literatuur werd voorgesteld. Bron: Biggs, Journal of Sex & Marital Therapy (2022)."
+    body: "Eerste hoogleraar transseksualiteit ter wereld, benoemd 1989 aan VUmc. Studeerde twee jaar bij John Money aan Johns Hopkins in Baltimore. Money's kliniek werd in 1979 gesloten door Paul McHugh wegens gebrek aan bewijs van effectiviteit — Gooren kende deze geschiedenis toen hij zijn eigen protocol begon te bouwen. Goorens inaugurele oratie werd bijgewoond door Money. Gooren beschouwde genderdysforie als een intersekse-aandoening: 'een tegenspraak tussen genetisch/gonadaal/genitaal geslacht en hersensgeslacht.' Co-auteur van het allereerste gepubliceerde voorstel voor puberteitsremming bij genderdysforie (1996). Na zijn emeritaat in 2008 werkte Gooren als consultant in Chiang Mai, Thailand, waar hij onderzoek deed naar kathoeys (Thaise transgender vrouwen) en hormoongebruik. Illustratief voor zijn handelwijze buiten gecontroleerde setting: de 13-jarige Britse Fredd Foley reisde met zijn moeder naar Amsterdam en Utrecht om Gooren te ontmoeten rond de tijd van het eerste artikel (1996). Na terugkomst weigerde de Londense kliniek te behandelen. De moeder belde Gooren, die vervolgens een driemaands triptoreline-recept uitschreef — voor een kind in een ander land, dat hij kort voor de camera had ontmoet, tegen de wens van diens eigen psychiater in. Goorens uitspraak: 'If your child knows for sure he is transsexual, I would not let puberty happen.' Biggs (2022) concludeert: dit suggereert dat het beoordelingsproces niet altijd zo rigoureus was als in de gepubliceerde literatuur werd voorgesteld. Bron: Biggs, Journal of Sex & Marital Therapy (2022)."
   },
   cohen: {
     name: "Peggy Cohen-Kettenis",
