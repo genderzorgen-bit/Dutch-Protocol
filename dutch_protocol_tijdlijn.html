@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dutch Protocol — Tijdlijn & Invloedkaart</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --bg2: #161616;
+    --bg3: #1e1e1e;
+    --border: #2a2a2a;
+    --border2: #3a3a3a;
+    --text: #e8e8e0;
+    --text2: #9a9a90;
+    --text3: #5a5a54;
+    --purple: #a78bfa;
+    --purple-bg: #1e1730;
+    --purple-border: #4c3b8a;
+    --blue: #60a5fa;
+    --blue-bg: #0f1f35;
+    --blue-border: #1e4a7a;
+    --amber: #fbbf24;
+    --amber-bg: #2a1f0a;
+    --amber-border: #7a5010;
+    --red: #f87171;
+    --red-bg: #2a0f0f;
+    --red-border: #7a2020;
+    --green: #86efac;
+    --green-bg: #0f2a1a;
+    --green-border: #1a5a30;
+    --teal: #5eead4;
+    --teal-bg: #0a2020;
+    --teal-border: #1a5050;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 32px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .header-left h1 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .header-left .subtitle {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .header-right {
+    font-size: 11px;
+    color: var(--text3);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px;
+  }
+
+  .timeline-col {
+    padding-top: 4px;
+    position: relative;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 36px;
+    top: 20px;
+    bottom: 20px;
+    width: 1px;
+    background: var(--border2);
+  }
+
+  .year-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    position: relative;
+    z-index: 1;
+    text-align: right;
+    padding-right: 16px;
+  }
+
+  .content-col {
+    padding-left: 24px;
+    border-left: 1px solid var(--border);
+  }
+
+  .era {
+    margin-bottom: 40px;
+  }
+
+  .era-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+  }
+
+  .card {
+    border-radius: 8px;
+    padding: 12px 14px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+    position: relative;
+  }
+
+  .card:hover { filter: brightness(1.15); }
+  .card.active { filter: brightness(1.2); }
+
+  .card .c-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 3px;
+  }
+
+  .card .c-sub {
+    font-size: 11px;
+    line-height: 1.4;
+    opacity: 0.8;
+  }
+
+  .card .c-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-top: 6px;
+    opacity: 0.7;
+  }
+
+  .card.purple { background: var(--purple-bg); border-color: var(--purple-border); }
+  .card.purple .c-label { color: var(--purple); }
+  .card.purple .c-tag { background: var(--purple-border); color: var(--purple); }
+
+  .card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+  .card.blue .c-label { color: var(--blue); }
+  .card.blue .c-tag { background: var(--blue-border); color: var(--blue); }
+
+  .card.amber { background: var(--amber-bg); border-color: var(--amber-border); }
+  .card.amber .c-label { color: var(--amber); }
+  .card.amber .c-tag { background: var(--amber-border); color: var(--amber); }
+
+  .card.red { background: var(--red-bg); border-color: var(--red-border); }
+  .card.red .c-label { color: var(--red); }
+  .card.red .c-tag { background: var(--red-border); color: var(--red); }
+
+  .card.green { background: var(--green-bg); border-color: var(--green-border); }
+  .card.green .c-label { color: var(--green); }
+  .card.green .c-tag { background: var(--green-border); color: var(--green); }
+
+  .card.teal { background: var(--teal-bg); border-color: var(--teal-border); }
+  .card.teal .c-label { color: var(--teal); }
+  .card.teal .c-tag { background: var(--teal-border); color: var(--teal); }
+
+  /* Detail panel */
+  #detail-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    padding: 20px 32px;
+    display: none;
+    z-index: 100;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  #detail-panel.show { display: flex; gap: 24px; align-items: flex-start; }
+
+  .detail-meta {
+    min-width: 160px;
+  }
+
+  .detail-meta .dm-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .detail-meta .dm-role {
+    font-size: 11px;
+    color: var(--text2);
+    margin-top: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  .detail-tag {
+    font-size: 9px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .detail-tag.macht { background: var(--purple-border); color: var(--purple); }
+  .detail-tag.geld { background: var(--amber-border); color: var(--amber); }
+  .detail-tag.wetenschap { background: var(--blue-border); color: var(--blue); }
+  .detail-tag.politiek { background: var(--green-border); color: var(--green); }
+  .detail-tag.kritiek { background: var(--red-border); color: var(--red); }
+  .detail-tag.media { background: #2a2a2a; color: var(--text2); }
+
+  .detail-body {
+    flex: 1;
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  .close-detail {
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--text3);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .close-detail:hover { border-color: var(--border); color: var(--text2); }
+
+  /* Flow arrows between sections */
+  .flow-arrow {
+    text-align: center;
+    padding: 6px 0;
+    color: var(--text3);
+    font-size: 18px;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 32px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text2);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .footer {
+    padding: 16px 32px;
+    font-size: 11px;
+    color: var(--text3);
+    font-family: 'IBM Plex Mono', monospace;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Dutch Protocol — Invloedkaart &amp; Tijdlijn</h1>
+    <div class="subtitle">Klik op een blok voor details · Onderzoeksdocument</div>
+  </div>
+  <div class="header-right">
+    Samengesteld op basis van<br>
+    openbare bronnen, NJB, Gezondheidsraad,<br>
+    Tweede Kamer, PubMed
+  </div>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div>Kernpersonen / institutie</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>Wetenschappelijke publicatie</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#5eead4"></div>Internationale verspreiding</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div>Financiering / legitimering</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#86efac"></div>Kritiek / keerpunten</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f87171"></div>Onderdrukte informatie</div>
+</div>
+
+<div class="main">
+  <div class="timeline-col">
+    <div class="timeline-line"></div>
+    <div style="height:4px"></div>
+    <div class="year-label" style="margin-bottom:52px">1970s</div>
+    <div class="year-label" style="margin-bottom:52px">1987</div>
+    <div class="year-label" style="margin-bottom:65px">1996–98</div>
+    <div class="year-label" style="margin-bottom:80px">2006</div>
+    <div class="year-label" style="margin-bottom:80px">2009–18</div>
+    <div class="year-label" style="margin-bottom:80px">2022–24</div>
+    <div class="year-label">2025–26</div>
+  </div>
+
+  <div class="content-col">
+
+    <!-- ERA 1 -->
+    <div class="era">
+      <div class="era-title">Oorsprong — de Amsterdamse kring</div>
+      <div class="cards">
+        <div class="card purple" onclick="show('vumc')">
+          <div class="c-label">VU University Medical Center Amsterdam</div>
+          <div class="c-sub">Genderkliniek actief voor volwassenen vanaf 1972. Eerste genderteam 1973 onder Gooren.</div>
+          <div class="c-tag">instelling</div>
+        </div>
+        <div class="card purple" onclick="show('gooren')">
+          <div class="c-label">Louis Gooren</div>
+          <div class="c-sub">Eerste hoogleraar transseksualiteit wereldwijd (1989). Oratie bijgewoond door John Money. Co-auteur voorstel GnRHa 1996.</div>
+          <div class="c-tag">kernpersoon</div>
+        </div>
+        <div class="card purple" onclick="show('cohen')">
+          <div class="c-label">Peggy Cohen-Kettenis</div>
+          <div class="c-sub">Psycholoog. Startte jeugdkliniek Utrecht 1987. Architect van het protocol. Lid Endocrine Society guideline-commissie.</div>
+          <div class="c-tag">kernpersoon</div>
+        </div>
+        <div class="card purple" onclick="show('delemarre')">
+          <div class="c-label">H. Delemarre-van de Waal</div>
+          <div class="c-sub">Kinderendocrinoloog met GnRHa-expertise. Vroeg Ferring om 2 junior salarisposities. Eerste auteur sleutelartikel 2006.</div>
+          <div class="c-tag">kernpersoon</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-arrow">↓</div>
+
+    <!-- ERA 2 -->
+    <div class="era">
+      <div class="era-title">Eerste publicaties — dunne evidence base</div>
+      <div class="cards">
+        <div class="card blue" onclick="show('art1996')">
+          <div class="c-label">Gooren &amp; Delemarre-van de Waal (1996)</div>
+          <div class="c-sub">Eerste voorstel GnRHa voor genderdysforie. Botdichtheidsrisico afgedaan als "niet van grote zorg".</div>
+          <div class="c-tag">publicatie</div>
+        </div>
+        <div class="card blue" onclick="show('art1998')">
+          <div class="c-label">Cohen-Kettenis &amp; Van Goozen (1998)</div>
+          <div class="c-sub">Eerste gepubliceerde casuïstiek: n=1 patiënt. Basis voor het hele protocol. Patiënt wachtte nog op laatste operatie.</div>
+          <div class="c-tag">publicatie</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-arrow">↓</div>
+
+    <!-- ERA 3 -->
+    <div class="era">
+      <div class="era-title">Sleutelartikel 2006 — gesponsord door Ferring</div>
+      <div class="cards">
+        <div class="card amber" onclick="show('art2006')">
+          <div class="c-label">Delemarre &amp; Cohen-Kettenis — EJE 2006</div>
+          <div class="c-sub">Gepresenteerd op Ferring-symposium. Ferring sponsorde publicatie + 2 salarisposities. Erkend in acknowledgements. Werd wereldstandaard.</div>
+          <div class="c-tag">sleutelartikel</div>
+        </div>
+        <div class="card red" onclick="show('ferring')">
+          <div class="c-label">Ferring Pharmaceuticals</div>
+          <div class="c-sub">Producent Gonapeptyl/Diphereline (triptoreline). Organiseerde symposium. Exacte sponsorbedrag nooit openbaar gemaakt.</div>
+          <div class="c-tag">geldstroom</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-arrow">↓</div>
+
+    <!-- ERA 4 -->
+    <div class="era">
+      <div class="era-title">Internationale verspreiding — uitvinders worden normstellers</div>
+      <div class="cards">
+        <div class="card teal" onclick="show('wpath')">
+          <div class="c-label">WPATH Standards of Care</div>
+          <div class="c-sub">Dutch Protocol direct opgenomen 2001. Nederlanders domineerden commissies. Uitvinders én goedkeurders van eigen protocol.</div>
+          <div class="c-tag">normstelling</div>
+        </div>
+        <div class="card teal" onclick="show('endocrine')">
+          <div class="c-label">Endocrine Society 2009 + 2017</div>
+          <div class="c-sub">Richtlijnen gebaseerd op Dutch Protocol. Cohen-Kettenis, Gooren, Delemarre in guideline-commissie.</div>
+          <div class="c-tag">normstelling</div>
+        </div>
+        <div class="card teal" onclick="show('boston')">
+          <div class="c-label">Boston Children's Hospital (2007)</div>
+          <div class="c-sub">Norman Spack. Psycholoog naar Amsterdam getraind door Cohen-Kettenis. Geen minimumleeftijd voor GnRHa.</div>
+          <div class="c-tag">verspreiding</div>
+        </div>
+        <div class="card amber" onclick="show('cvz')">
+          <div class="c-label">CVZ-vergoedingsbesluit 2007 (NL)</div>
+          <div class="c-sub">Transgenderzorg grotendeels in basispakket. Gebaseerd op WPATH-richtlijnen die op Dutch Protocol gebaseerd zijn. Circulaire basis.</div>
+          <div class="c-tag">beleid NL</div>
+        </div>
+        <div class="card amber" onclick="show('ks2018')">
+          <div class="c-label">Kwaliteitsstandaard 2018 (NL)</div>
+          <div class="c-sub">Officiële NL-richtlijn. Gebaseerd op WPATH SoC7 + Endocrine Society — die zelf op Dutch Protocol gebaseerd zijn. Criteria versoepeld zonder nieuwe evidence.</div>
+          <div class="c-tag">beleid NL</div>
+        </div>
+        <div class="card red" onclick="show('replicatie')">
+          <div class="c-label">Britse replicatiestudie — niet gepubliceerd</div>
+          <div class="c-sub">Tavistock vond géén verbetering. Studie onderdrukt. Pas onthuld via Cass Review en onderzoek Biggs (2022).</div>
+          <div class="c-tag">suppressed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-arrow">↓</div>
+
+    <!-- ERA 5 -->
+    <div class="era">
+      <div class="era-title">Keerpunten — de dam breekt</div>
+      <div class="cards">
+        <div class="card green" onclick="show('nrc2022')">
+          <div class="c-label">NRC — Kuitenbrouwer &amp; Vasterman (dec. 2022)</div>
+          <div class="c-sub">Eerste publieke signalering: Ferring-financiering + zelfonderzoek. Kliniek reageerde defensief. Oproep tot inspectie genegeerd.</div>
+          <div class="c-tag">media / kritiek</div>
+        </div>
+        <div class="card green" onclick="show('biggs')">
+          <div class="c-label">Michael Biggs / SEGM (2022–23)</div>
+          <div class="c-sub">Oxford-socioloog. Gedetailleerde analyse methodologische tekortkomingen. SEGM financierde Levine/Abbruzzese/Mason-analyse.</div>
+          <div class="c-tag">wetenschapskritiek</div>
+        </div>
+        <div class="card green" onclick="show('hertzberger')">
+          <div class="c-label">Motie Rosanne Hertzberger (NSC) — feb. 2024</div>
+          <div class="c-sub">Microbioloog + NRC-columnist + Kamerlid 2023–2024. Moties aangenomen: data verzamelen + gezondheidsuitkomsten onderzoeken.</div>
+          <div class="c-tag">politiek</div>
+        </div>
+        <div class="card green" onclick="show('cass')">
+          <div class="c-label">Cass Review (VK) — april 2024</div>
+          <div class="c-sub">Onafhankelijk NHS-onderzoek. Conclusie: bewijs onvoldoende voor routinematig gebruik. VK stopte. NL volgde niet.</div>
+          <div class="c-tag">internationaal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-arrow">↓</div>
+
+    <!-- ERA 6 -->
+    <div class="era">
+      <div class="era-title">Nu — Gezondheidsraad onder vuur</div>
+      <div class="cards">
+        <div class="card amber" onclick="show('smeehuijzen')">
+          <div class="c-label">Smeehuijzen, Smids &amp; Hoekstra — NJB dec. 2025</div>
+          <div class="c-sub">Hoogleraar privaatrecht VU. "De helft van de commissie is op wezenlijke manier verbonden met de interventie die zij moet beoordelen."</div>
+          <div class="c-tag">juridische kritiek</div>
+        </div>
+        <div class="card red" onclick="show('commissie')">
+          <div class="c-label">Gezondheidsraad-commissie (feb. 2025)</div>
+          <div class="c-sub">Bevat Van de Grift (Amsterdam UMC), Horsnell (actieve genderzorgaanbieder), Claahsen (Radboudumc gendercentrum), Van Mello (Amsterdam UMC). Advies verwacht Q2 2026.</div>
+          <div class="c-tag">belangenconflict</div>
+        </div>
+        <div class="card green" onclick="show('kamervragen2026')">
+          <div class="c-label">Parlementaire vragen — jan. 2026</div>
+          <div class="c-sub">Na NJB-artikel Smeehuijzen. Vragen aan minister over onafhankelijkheid commissie en betrokkenheid critici.</div>
+          <div class="c-tag">politiek</div>
+        </div>
+        <div class="card blue" onclick="show('finland2026')">
+          <div class="c-label">Fins registeronderzoek — Ruuska et al. (april 2026)</div>
+          <div class="c-sub">2.083 genderverwezen jongeren vs. 16.643 controles. Psychiatrische morbiditeit stijgt na behandeling. Geen aanwijzing dat medische behandeling psychisch lijden vermindert. Ondermijnt centrale aanname Dutch Protocol.</div>
+          <div class="c-tag">internationaal · wetenschap</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  Dutch Protocol Invloedkaart · Bronnen: Gezondheidsraad.nl, Tweedekamer.nl, NJB, PubMed, EJE, Gender Clinic News, NTVG · Alle feiten gebaseerd op openbare bronnen
+</div>
+
+<!-- DETAIL PANEL -->
+<div id="detail-panel">
+  <div class="detail-meta">
+    <div class="dm-name" id="dp-name"></div>
+    <div class="dm-role" id="dp-role"></div>
+    <div class="detail-tags" id="dp-tags"></div>
+  </div>
+  <div class="detail-body" id="dp-body"></div>
+  <button class="close-detail" onclick="closeDetail()">✕ sluiten</button>
+</div>
+
+<script>
+const data = {
+  vumc: {
+    name: "VU University Medical Center Amsterdam",
+    role: "Genderkliniek / Kennis- en Zorgcentrum voor Genderdysforie",
+    tags: ["macht"],
+    body: "Centrum van alles. Genderkliniek actief voor volwassenen vanaf 1972. Eerste genderteam 1973, Gooren kreeg hier in 1977 de leiding. De kliniek had een goede reputatie waardoor medische zorg voor transgenders serieus werd genomen door zorgverzekeraars, politici en media. Jeugdafdeling groeide organisch: Cohen-Kettenis startte in Utrecht (1987) en verhuisde in 2002 naar VUmc. Heeft 70-90% marktaandeel in Nederlandse transgenderzorg. Publiceert tientallen papers per jaar — waarbij onderzoekers hun eigen werk evalueren."
+  },
+  gooren: {
+    name: "Louis Gooren",
+    role: "Psychiater/endocrinoloog · VUmc Amsterdam",
+    tags: ["macht", "wetenschap"],
+    body: "Eerste hoogleraar transseksualiteit ter wereld, benoemd 1989 aan VUmc. Zijn inaugurele oratie werd bijgewoond door John Money (Johns Hopkins). Gooren beschouwde genderdysforie als een intersekse-aandoening: 'een tegenspraak tussen genetisch/gonadaal/genitaal geslacht en hersensgeslacht.' Co-auteur van het allereerste gepubliceerde voorstel voor puberteitsremming bij genderdysforie (1996). Illustratief: de 13-jarige Britse Fredd Foley reisde met zijn moeder naar Amsterdam en Utrecht om Gooren te ontmoeten rond de tijd van het eerste artikel (1996). Na terugkomst weigerde de Londense kliniek te behandelen. De moeder belde Gooren, die vervolgens een driemanands triptoreline-recept uitschreef — voor een kind in een ander land, dat hij kort voor de camera had ontmoet, tegen de wens van diens eigen psychiater in. Goorens uitspraak: 'If your child knows for sure he is transsexual, I would not let puberty happen.' Biggs (2022) concludeert: dit suggereert dat het beoordelingsproces niet altijd zo rigoureus was als in de gepubliceerde literatuur werd voorgesteld. Bron: Biggs, Journal of Sex & Marital Therapy (2022)."
+  },
+  cohen: {
+    name: "Peggy Cohen-Kettenis",
+    role: "Psycholoog · Architect van het protocol",
+    tags: ["macht", "wetenschap"],
+    body: "Begon in 1987 aan UMC Utrecht. Eerste casuïstiek (1998) betrof n=1 patiënt. Hoogleraar medische psychologie VUmc 2002. Lid van de Endocrine Society guideline-commissie (2009, 2017) — dezelfde commissie die haar eigen protocol moest beoordelen. Lid WPATH Standards of Care commissie. Trainde psychologen van Boston Children's Hospital. Ontkende tegenover Gender Clinic News elk belangenconflict met Ferring en weigerde het bedrag van de financiering te noemen. Centraal in het patroon waarbij onderzoekers hun eigen werk evalueren."
+  },
+  delemarre: {
+    name: "Henriette Delemarre-van de Waal",
+    role: "Kinderendocrinoloog · VUmc Amsterdam",
+    tags: ["macht", "wetenschap", "geld"],
+    body: "Had bestaande expertise met GnRHa voor vroegrijpheid (precocious puberty). Erkende contact gehad te hebben met Ferring vanwege eerdere studies. Vroeg Ferring specifiek 'of zij bereid zouden zijn twee junior onderzoeksposities te betalen.' Eerste auteur sleutelartikel 2006. Later pleitte ze voor nóg vroegere interventie: vóór Tanner-stadium 2. Botdichtheidsproblemen werden in 1996 afgedaan als 'niet van grote zorg'; in 2006 erkend maar gebagatelliseerd. Inmiddels overleden."
+  },
+  art1996: {
+    name: "Gooren & Delemarre-van de Waal (1996)",
+    role: "Eerste voorstel GnRHa in medische literatuur",
+    tags: ["wetenschap"],
+    body: "Eerste publicatie die puberteitsremming met GnRHa voorstelde voor transgender jongeren. Mogelijke botdichtheidsproblemen werden beschreven als 'not of great concern.' Gebaseerd op theoretische overwegingen, niet op klinische data van patiënten die de behandeling ondergaan hadden."
+  },
+  art1998: {
+    name: "Cohen-Kettenis & Van Goozen (1998)",
+    role: "Eerste casuïstiek puberteitsremming",
+    tags: ["wetenschap"],
+    body: "Eerste gepubliceerde casuïstiek: één patiënt (FG), een transjongen, die puberteitsremmers ontving. Op het moment van publicatie wachtte FG nog op zijn laatste operatie. Op basis van deze ene casus beargumenteerden Cohen-Kettenis en Van Goozen dat puberteitsremming fysieke en psychologische voordelen zou kunnen hebben. Dit werd de basis voor het gehele Dutch Protocol."
+  },
+  art2006: {
+    name: "Delemarre & Cohen-Kettenis — EJE Supplement 2006",
+    role: "Het sleutelartikel dat wereldstandaard werd",
+    tags: ["wetenschap", "geld"],
+    body: "Officiële titel: 'Clinical management of gender identity disorder in adolescents: a protocol on psychological and paediatric endocrinology aspects.' Gepresenteerd op het 4e Ferring Pharmaceuticals International Paediatric Endocrinology Symposium, Parijs 2006. Acknowledgements: 'The authors are very grateful to Ferring Pharmaceuticals for the financial support of studies on the treatment of adolescents with gender identity disorders.' Botdichtheidsprobleem erkend maar beschreven als opweegbaar tegen voordelen. De Britse poging dit te repliceren vond géén verbetering — die studie werd niet gepubliceerd. Dit artikel werd de feitelijke mondiale standaard."
+  },
+  ferring: {
+    name: "Ferring Pharmaceuticals",
+    role: "Sponsor + producent triptoreline (Gonapeptyl/Diphereline)",
+    tags: ["geld", "macht"],
+    body: "Zwitsers-Deens farmaceutisch bedrijf. Produceert triptoreline (Gonapeptyl/Diphereline) — precies de GnRHa die het Dutch Protocol aanbeveelt. Organiseerde het 4e Ferring Pharmaceuticals International Paediatric Endocrinology Symposium in Parijs (2006) waarop het sleutelartikel werd gepresenteerd. Betaalde de publicatiekosten van het symposiumvolume in het EJE. Betaalde twee junior onderzoeksposities bij VUmc. Exacte totaalbedrag is nooit openbaar gemaakt. Cohen-Kettenis weigerde vragen over de hoogte van de financiering te beantwoorden."
+  },
+  wpath: {
+    name: "WPATH — World Professional Association for Transgender Health",
+    role: "Internationale normstelling",
+    tags: ["macht", "wetenschap"],
+    body: "Voormalig HBIGDA. Nam Dutch Protocol direct op in Standards of Care 2001 (SoC 6). Cohen-Kettenis, Gooren en Delemarre waren actieve leden en commissieleden bij meerdere SoC-versies. Dit betekende dat de uitvinders van het Dutch Protocol ook de internationale richtlijnen schreven waarnaar andere landen verwezen ter legitimering. Bij SoC 8 (2022) werd de minimumleeftijd voor hormonen verlaagd, opnieuw zonder robuuste evidence. VUmc-onderzoekers presenteerden bij WPATH 2022 voorlopige data over reproductieve spijt en seksuele disfunctie — die data werden nooit als studie gepubliceerd."
+  },
+  endocrine: {
+    name: "Endocrine Society — Richtlijnen 2009 en 2017",
+    role: "Klinische normstelling internationaal",
+    tags: ["macht", "wetenschap"],
+    body: "De Endocrine Society publiceerde in 2009 (Hembree et al.) en 2017 klinische richtlijnen. Cohen-Kettenis, Gooren en Delemarre-van de Waal zaten alledrie in de guideline-commissie van 2009. Zij waren dus tegelijkertijd de uitvinders van het Dutch Protocol én de commissieleden die de internationale richtlijn schreven die het protocol legitimeerde. De Nederlandse Kwaliteitsstandaard 2018 baseerde zich op deze Endocrine Society-richtlijn én op WPATH SoC7 — een cirkel van drie lagen die alle teruggaan naar dezelfde Amsterdamse onderzoeksgroep."
+  },
+  boston: {
+    name: "Boston Children's Hospital — Norman Spack",
+    role: "Eerste transgender kliniek VS (2007)",
+    tags: ["wetenschap"],
+    body: "Dr. Norman Spack richtte in 2007 de Gender Management Service op — eerste gespecialiseerde kliniek voor transgenderkinderen in de VS. Stuurde een psycholoog naar Amsterdam om getraind te worden door Cohen-Kettenis. Bood GnRHa aan zonder minimumleeftijd, bij Tanner-stadium 2-3 (meisjes soms al 8-9 jaar). Spack citeerde meerdere keren openbaar dat hij 'kwijlde' bij de mogelijkheid GnRHa voor te schrijven. Sloot aan bij Cohen-Kettenis, Gooren en Delemarre in de Endocrine Society commissie."
+  },
+  cvz: {
+    name: "CVZ / Zorginstituut Nederland — Toetsingskader 2007",
+    role: "Beslissend vergoedingsbesluit basispakket",
+    tags: ["geld", "politiek"],
+    body: "Het College voor Zorgverzekeringen (CVZ) stelde in 2007 het toetsingskader op dat transgenderzorg grotendeels onder de basisverzekering bracht. Gebaseerd op internationale richtlijnen (WPATH, Endocrine Society) die zelf op het Dutch Protocol zijn gebaseerd — een circulaire onderbouwing. In 2019 stond een onafhankelijk Gezondheidsraad-advies op de agenda. Dit werd geschrapt omdat de kwartiermaker was ingesteld. Sindsdien geen onafhankelijke toetsing van de wetenschappelijke basis."
+  },
+  ks2018: {
+    name: "Kwaliteitsstandaard Transgenderzorg 2018 (NL)",
+    role: "Officiële Nederlandse richtlijn",
+    tags: ["politiek", "geld"],
+    body: "Samengesteld met medewerking van WPATH SoC7 en Endocrine Society 2017 — die zelf op het Dutch Protocol zijn gebaseerd. De 2018-versie versoepelde de toegangscriteria: de eis van vroeg-kindelijke genderdysforie als voorwaarde werd geschrapt, minimumleeftijd voor hormonen verlaagd naar 15, mastectomie toegestaan vanaf 16. Dit zonder nieuwe wetenschappelijke onderbouwing. Meerdere juridische experts concludeerden later dat dit protocol niet voldoet aan de eisen om als 'medische standaard' te gelden."
+  },
+  replicatie: {
+    name: "Britse replicatiestudie — nooit gepubliceerd",
+    role: "Suppressie van negatieve resultaten",
+    tags: ["kritiek", "wetenschap"],
+    body: "De Tavistock-kliniek in Londen (GIDS) probeerde het Dutch Protocol te repliceren. De studie vond géén statistisch significante verbetering bij adolescenten met puberteitsremmers vergeleken met counseling alleen. Deze bevindingen werden NIET gepubliceerd. De suppressie werd later onthuld via het werk van Oxford-socioloog Michael Biggs en bevestigd in de Cass Review 2024. De Tavistock-kliniek werd in 2022 gesloten. Dit is een schoolvoorbeeld van publicatiebias bij een behandeling met onomkeerbare gevolgen."
+  },
+  nrc2022: {
+    name: "NRC — Kuitenbrouwer & Vasterman (dec. 2022)",
+    role: "Eerste Nederlandse publieke signalering",
+    tags: ["media", "kritiek"],
+    body: "Journalist Jan Kuitenbrouwer en mediasocioloog Peter Vasterman. Opiniestuk NRC Handelsblad. Signaleerden: Ferring-financiering in 2006-artikel, zelfonderzoek ('bijna alle studies komen van dezelfde onderzoekers die hun eigen werk evalueren'), ontbreken externe evaluatie. Riepen op tot onderzoek IGJ. Nederlandse klinieken reageerden in hetzelfde NRC-nummer: externe evaluatie 'niet helpend voor patiënten.' Zij stelden als eersten in Nederland de combinatie Ferring + zelfonderzoek + ontbreken replicatie publiekelijk aan de kaak."
+  },
+  biggs: {
+    name: "Michael Biggs / SEGM (2022–2023)",
+    role: "Internationaal wetenschappelijke kritiek",
+    tags: ["wetenschap", "kritiek"],
+    body: "Oxford-socioloog Michael Biggs publiceerde in 2022 een gedetailleerde analyse van het Dutch Protocol: 'Origins and Evidence'. SEGM (Society for Evidence-based Gender Medicine, opgericht 2019) financierde de Levine/Abbruzzese/Mason-analyse (2023): 'The Myth of Reliable Research in Pediatric Gender Medicine'. Drie methodologische biases: (1) uitsluitend succesvolle cases geselecteerd, (2) genderdysforieresolutie gemeten via omgedraaide schaal, (3) gelijktijdige psychotherapie maakt het onmogelijk effecten te scheiden. Opmerking: SEGM is omstreden; gebruik de primaire publicaties, niet SEGM als autoriteit."
+  },
+  hertzberger: {
+    name: "Rosanne Hertzberger (NSC) — moties feb. 2024",
+    role: "Kamerlid NSC · dec. 2023 – nov. 2024",
+    tags: ["politiek"],
+    body: "Rosanne Yente Hertzberger (1984), microbioloog, NRC-columnist 2009-2023, Kamerlid NSC december 2023 tot november 2024. Trad af na onacceptabele uitlatingen van kabinetsleden. Diende twee moties in (15 februari 2024): (1) data verzamelen over diagnoses en behandelingen, (2) onderzoek gezondheidsuitkomsten Dutch Protocol vergelijken met andere Europese landen. Beide aangenomen. Minister Dijkstra (D66) ontraadde de moties. Dit leidde uiteindelijk tot de Gezondheidsraad-adviesaanvraag."
+  },
+  cass: {
+    name: "Cass Review — VK april 2024",
+    role: "Onafhankelijk NHS-onderzoek",
+    tags: ["wetenschap", "kritiek"],
+    body: "Vierjaarlijks onafhankelijk onderzoek in opdracht van NHS England door dr. Hilary Cass. Conclusie: 'het bewijs is onvoldoende om routinematig gebruik van puberteitsremmers en cross-sekse hormonen te rechtvaardigen.' Aanbeveling: psychosociale interventies eerst, medische behandeling in strikt onderzoeksverband. VK, Zweden, Finland, Denemarken en Noorwegen stopten of beperkten sterk. Nederland beschouwde de Cass Review aanvankelijk als politiek gemotiveerd en volgde niet."
+  },
+  smeehuijzen: {
+    name: "Smeehuijzen, Smids & Hoekstra — NJB dec. 2025",
+    role: "Juridische kritiek op Gezondheidsraad-commissie",
+    tags: ["kritiek", "politiek", "wetenschap"],
+    body: "Prof. mr. J.L. Smeehuijzen (hoogleraar privaatrecht VU), dr. J. Smids (filosofie/ethiek Erasmus MC), mr. C. Hoekstra. Eerdere publicatie NJB 2023: Dutch Protocol voldoet niet aan eisen voor een leidend protocol — niet evidence-based, medisch-ethisch te zwaar geladen, niet in adequaat proces tot stand gekomen. NJB december 2025: Gezondheidsraad-commissieleden zijn ook betrokken bij onderzoek of behandeling op dit gebied. 'De helft van de commissie is op een wezenlijke manier verbonden met de interventie die zij moet beoordelen.' SGP en ChristenUnie dienden Kamervragen in."
+  },
+  commissie: {
+    name: "Gezondheidsraad-commissie Transgenderzorg jongeren",
+    role: "Ingesteld 5 februari 2025 · Advies verwacht Q2 2026",
+    tags: ["macht", "kritiek"],
+    body: "Voorzitter: Prof. dr. O.M. Dekkers (LUMC, methodologie). Leden met directe binding aan de praktijk die beoordeeld wordt: Dr. T.C. van de Grift (universitair docent Amsterdam UMC — publiceerde meerdere papers met het Amsterdam UMC-genderteam). Drs. K. Horsnell (arts/psycholoog Check-in Genderzorg, actieve genderzorgaanbieder). Prof. dr. H.L. Claahsen (structureel geraadpleegd) — hoogleraar Geslacht & Gender + voorzitter Radboudumc Expertisecentrum voor Geslacht & Gender. Dr. N.M. van Mello (structureel geraadpleegd) — gynaecoloog Amsterdam UMC. Prof. dr. M.C. de Vries sprak in 2019 over transgenderkinderen en hun 'onvoorwaardelijk recht op genderbevestigende behandeling.'"
+  },
+  kamervragen2026: {
+    name: "Parlementaire vragen over commissie-onafhankelijkheid — jan. 2026",
+    role: "Parlementaire controle commissie-onafhankelijkheid",
+    tags: ["politiek"],
+    body: "Kamervragen ingediend aan de minister van VWS na het NJB-artikel van Smeehuijzen (december 2025). Vragen: hoe verhoudt de commissiesamenstelling zich tot de 'Code ter voorkoming van oneigenlijke beïnvloeding door belangenverstrengeling'? Worden critici van het protocol betrokken bij de commissie? Voert de minister ook gesprekken met kritische wetenschappers, naast de betrokken UMC's? Advies verwacht Q2 2026."
+  },
+  finland2026: {
+    name: "Fins registeronderzoek — Ruuska et al. (april 2026)",
+    role: "Meest omvangrijke dataset tot nu toe · Acta Paediatrica",
+    tags: ["wetenschap", "kritiek"],
+    body: "Ruuska, Tuisku, Holttinen & Kaltiala (2026). Nationale registerdata Finland 1996–2019: alle 2.083 jongeren onder 23 jaar die gespecialiseerde genderzorg contacteerden, vergeleken met 16.643 gematchte controlepersonen. Bevindingen: psychiatrische morbiditeit vóór verwijzing: 45,7% vs. 15,0% in controlegroep. Twee jaar of meer ná verwijzing: 61,7% vs. 14,6%. Onder jongeren die medische genderbehandeling ondergingen nam psychiatrische morbiditeit markant toe. De studie vindt geen aanwijzing dat medische behandeling het psychiatrisch lijden vermindert. Auteurs: 'Dit ondersteunt niet de veronderstelde verbetering van de mentale gezondheid na medische genderbehandeling tijdens de ontwikkelingsjaren.' Conclusie: psychiatrische stoornissen vereisen directe behandeling ongeacht genderidentiteit. Dit ondermijnt de centrale aanname van het Dutch Protocol: dat het aanpakken van genderdysforie het psychisch lijden oplost."
+  }
+};
+
+function show(key) {
+  const d = data[key];
+  if (!d) return;
+  document.getElementById('dp-name').textContent = d.name;
+  document.getElementById('dp-role').textContent = d.role;
+  document.getElementById('dp-body').textContent = d.body;
+  const tagsEl = document.getElementById('dp-tags');
+  tagsEl.innerHTML = d.tags.map(t => `<span class="detail-tag ${t}">${t}</span>`).join('');
+  document.getElementById('detail-panel').classList.add('show');
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('show');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDetail();
+});
+</script>
+</body>
+</html>
