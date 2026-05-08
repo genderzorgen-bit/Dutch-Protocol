@@ -390,6 +390,11 @@
           <div class="c-sub">Kinderendocrinoloog met GnRHa-expertise. Vroeg Ferring om 2 junior salarisposities. Eerste auteur sleutelartikel 2006.</div>
           <div class="c-tag">kernpersoon</div>
         </div>
+        <div class="card green" onclick="show('acampo')">
+          <div class="c-label">Joost à Campo — vroege kritische stem (2000–2018)</div>
+          <div class="c-sub">Bijzonder hoogleraar Transforensische Psychiatrie, Maastricht. Stelde al in 2000 de vraag: kan de wens tot geslachtsverandering een symptoom van psychose zijn? Werd zwaar aangevallen en zweeg jaren.</div>
+          <div class="c-tag">psychiatrie · kritiek · vroeg signaal</div>
+        </div>
       </div>
     </div>
 
@@ -491,6 +496,11 @@
           <div class="c-sub">Microbioloog + NRC-columnist + Kamerlid 2023–2024. Moties aangenomen: data verzamelen + gezondheidsuitkomsten onderzoeken.</div>
           <div class="c-tag">politiek</div>
         </div>
+        <div class="card green" onclick="show('smids')">
+          <div class="c-label">Jilles Smids — medisch ethicus (2023–2025)</div>
+          <div class="c-sub">Erasmus MC. Publiceerde in NTVG, JAMA, Family & Law en meer. Een van de actiefste Nederlandse academische critici van het Dutch Protocol.</div>
+          <div class="c-tag">ethiek · wetenschap</div>
+        </div>
         <div class="card green" onclick="show('cass')">
           <div class="c-label">Cass Review (VK) — april 2024</div>
           <div class="c-sub">Onafhankelijk NHS-onderzoek. Conclusie: bewijs onvoldoende voor routinematig gebruik. VK stopte. NL volgde niet.</div>
@@ -506,7 +516,7 @@
       <div class="era-title">Nu — Gezondheidsraad onder vuur</div>
       <div class="cards">
         <div class="card amber" onclick="show('smeehuijzen')">
-          <div class="c-label">Smeehuijzen, Smids &amp; Hoekstra — NJB dec. 2025</div>
+          <div class="c-label">Smeehuijzen — NJB dec. 2025</div>
           <div class="c-sub">Hoogleraar privaatrecht VU. "De helft van de commissie is op wezenlijke manier verbonden met de interventie die zij moet beoordelen."</div>
           <div class="c-tag">juridische kritiek</div>
         </div>
@@ -548,17 +558,23 @@
 
 <script>
 const data = {
+  acampo: {
+    name: "Joost à Campo",
+    role: "Bijzonder hoogleraar Transforensische Psychiatrie · Universiteit Maastricht",
+    tags: ["psychiatrie", "kritiek"],
+    body: "Psychiater bij Mondriaan/Radix, bijzonder hoogleraar Transforensische Psychiatrie aan de Universiteit Maastricht (aangesteld 2018). Promoveerde in 2004 op 'Changes in appearance and psychoses.' In 2000 behandelde hij een patiënt met een paranoïde psychose wiens wens tot geslachtsverandering verdween na psychiatrische behandeling. Hij vroeg zich af of dit vaker voorkwam en hield een enquête onder 186 collega-psychiaters. Uitkomst: bij 61 procent van de 586 gerapporteerde patiënten met genderdysforie was sprake van comorbide psychiatrische problematiek. Zijn conclusie: de wens tot geslachtsverandering kan in sommige gevallen een symptoom zijn van psychose of schizofrenie. In 2001 publiceerde hij hierover in het NTVG. In 2002 werd hij geïnterviewd door NRC. Het Amsterdamse genderteam reageerde fel: À Campo zou transseksualiteit niet begrijpen en bijdragen aan media-hype. De Inspectie Gezondheidszorg vroeg de Nederlandse Vereniging voor Psychiaters een standpunt te formuleren over de indicatiestelling voor geslachtsveranderende ingrepen. Dat standpunt is er nooit gekomen. À Campo zweeg vervolgens jaren over dit onderwerp. In de Zembla-uitzending 'Transgender met spijt' (december 2018) sprak hij opnieuw — en noemde bedreigingen en sociale druk als reden voor zijn lange stilzwijgen. Zijn kernboodschap was altijd dat hij opkwam voor kwetsbare patiënten die onterecht in een transitietraject terechtkwamen. Zijn werk wordt nog steeds geciteerd in wetenschappelijke literatuur, ook in de psychosestudie van Termorshuizen et al. (2023), als documentatie van misdiagnose van psychose als genderdysforie."
+  },
   vumc: {
     name: "VU University Medical Center Amsterdam",
     role: "Genderkliniek / Kennis- en Zorgcentrum voor Genderdysforie",
     tags: ["macht"],
-    body: "Centrum van alles. Genderkliniek actief voor volwassenen vanaf 1972. Eerste genderteam 1973, Gooren kreeg hier in 1977 de leiding. De kliniek had een goede reputatie waardoor medische zorg voor transgenders serieus werd genomen door zorgverzekeraars, politici en media. Jeugdafdeling groeide organisch: Cohen-Kettenis startte in Utrecht (1987) en verhuisde in 2002 naar VUmc. Heeft 70-90% marktaandeel in Nederlandse transgenderzorg. Publiceert tientallen papers per jaar — waarbij onderzoekers hun eigen werk evalueren."
+    body: "Het VUmc was het institutionele centrum van het Dutch Protocol. Genderkliniek actief voor volwassenen vanaf 1972. Eerste genderteam 1973, Gooren kreeg hier in 1977 de leiding. Jeugdafdeling groeide organisch: Cohen-Kettenis startte in Utrecht (1987) en verhuisde in 2002 naar VUmc. Heeft 70-90% marktaandeel in Nederlandse transgenderzorg. Publiceert tientallen papers per jaar — waarbij onderzoekers hun eigen werk evalueren."
   },
   money: {
     name: "John Money",
     role: "Psycholoog · Johns Hopkins University, Baltimore",
     tags: ["historische context"],
-    body: "Grondlegger van het concept 'genderidentiteit' — de these dat genderrol los staat van biologisch geslacht en sociaal aangeleerd kan worden. Oprichter van de eerste genderkliniek in de VS aan Johns Hopkins (1966). Zijn werk was het theoretische fundament voor de transgendergeneeskunde zoals die zich daarna ontwikkelde. Money werd later zwaar bekritiseerd vanwege zijn experimenten met de jongen David Reimer, aan wie hij zonder toestemming van ouders een meisjesidentiteit oplegde na een ongeluk bij de besnijdenis. Reimer pleegde in 2004 zelfmoord. Money's kliniek aan Johns Hopkins werd in 1979 gesloten door Paul McHugh, omdat follow-uponderzoek aantoonde dat de behandeling geen aantoonbare verbetering van welbevinden opleverde. Louis Gooren studeerde twee jaar bij Money in Baltimore voordat hij zijn eigen werk in Nederland opbouwde."
+    body: "Grondlegger van het concept 'genderidentiteit' — de these dat genderrol primair sociaal gevormd wordt, los van biologisch geslacht. Oprichter van de eerste genderkliniek in de VS aan Johns Hopkins (1966). Zijn werk was het theoretische fundament voor de transgendergeneeskunde zoals die zich daarna ontwikkelde. Money werd later zwaar bekritiseerd vanwege zijn experimenten met de jongen David Reimer, aan wie hij zonder toestemming van ouders een meisjesidentiteit oplegde na een ongeluk bij de besnijdenis. Reimer pleegde in 2004 zelfmoord. Money's kliniek aan Johns Hopkins werd in 1979 gesloten door Paul McHugh, omdat follow-uponderzoek aantoonde dat de behandeling geen aantoonbare verbetering van welbevinden opleverde. Louis Gooren studeerde twee jaar bij Money in Baltimore voordat hij zijn eigen werk in Nederland opbouwde."
   },
   mchugh: {
     name: "Paul McHugh",
@@ -582,7 +598,7 @@ const data = {
     name: "Henriette Delemarre-van de Waal",
     role: "Kinderendocrinoloog · VUmc Amsterdam",
     tags: ["macht", "wetenschap", "geld"],
-    body: "Had bestaande expertise met GnRHa voor vroegrijpheid (precocious puberty). Erkende contact gehad te hebben met Ferring vanwege eerdere studies. Vroeg Ferring specifiek 'of zij bereid zouden zijn twee junior onderzoeksposities te betalen.' Eerste auteur sleutelartikel 2006. Later pleitte ze voor nóg vroegere interventie: vóór Tanner-stadium 2. Botdichtheidsproblemen werden in 1996 afgedaan als 'niet van grote zorg'; in 2006 erkend maar gebagatelliseerd. Inmiddels overleden."
+    body: "Had bestaande expertise met GnRHa voor vroegrijpheid (precocious puberty). Erkende contact gehad te hebben met Ferring vanwege eerdere studies. Vroeg Ferring specifiek 'of zij bereid zouden zijn twee junior onderzoeksposities te betalen.' Een AIO-aanstelling kostte destijds inclusief werkgeverslasten circa €32.000 tot €40.000 per jaar — twee posities over vier jaar betekende een financiering van naar schatting €250.000 tot €320.000. Eerste auteur sleutelartikel 2006. Later pleitte ze voor nóg vroegere interventie: vóór Tanner-stadium 2. Botdichtheidsproblemen werden in 1996 afgedaan als 'niet van grote zorg'; in 2006 erkend maar gebagatelliseerd. In 2006 kondigde ze publiekelijk aan dat het VUmc de effecten van puberteitsremmers op de hersenontwikkeling zou gaan onderzoeken. Haar exacte woorden: 'Er vindt veel ontwikkeling plaats in de hersenen tijdens de puberteit, ook onder invloed van geslachtshormonen, maar niemand weet dat precies. Wij zijn van plan dat te gaan onderzoeken.' Dat onderzoek heeft nooit plaatsgevonden — zo concludeerde neurowetenschapper Sarah Burke later tegenover Zembla. Burke werkte destijds in het VUmc. Delemarre overleed in februari 2014, op 68- of 69-jarige leeftijd. Ze heeft de internationale keerpunten — het Cass Review en het Finse registeronderzoek — niet meer meegemaakt."
   },
   art1996: {
     name: "Gooren & Delemarre-van de Waal (1996)",
@@ -594,19 +610,19 @@ const data = {
     name: "Cohen-Kettenis & Van Goozen (1998)",
     role: "Eerste casuïstiek puberteitsremming",
     tags: ["wetenschap"],
-    body: "Eerste gepubliceerde casuïstiek: één patiënt (FG), een transjongen, die puberteitsremmers ontving. Op het moment van publicatie wachtte FG nog op zijn laatste operatie. Op basis van deze ene casus beargumenteerden Cohen-Kettenis en Van Goozen dat puberteitsremming fysieke en psychologische voordelen zou kunnen hebben. Dit werd de basis voor het gehele Dutch Protocol."
+    body: "Eerste gepubliceerde casuïstiek: één patiënt (FG), biologisch meisje met genderdysforie, die puberteitsremmers ontving. Op het moment van publicatie wachtte FG nog op de laatste operatie. Op basis van deze ene casus beargumenteerden Cohen-Kettenis en Van Goozen dat puberteitsremming fysieke en psychologische voordelen zou kunnen hebben. Dit werd de basis voor het gehele Dutch Protocol."
   },
   art2006: {
     name: "Delemarre & Cohen-Kettenis — EJE Supplement 2006",
     role: "Het sleutelartikel dat wereldstandaard werd",
     tags: ["wetenschap", "geld"],
-    body: "Officiële titel: 'Clinical management of gender identity disorder in adolescents: a protocol on psychological and paediatric endocrinology aspects.' Gepresenteerd op het 4e Ferring Pharmaceuticals International Paediatric Endocrinology Symposium, Parijs 2006. Acknowledgements: 'The authors are very grateful to Ferring Pharmaceuticals for the financial support of studies on the treatment of adolescents with gender identity disorders.' Botdichtheidsprobleem erkend maar beschreven als opweegbaar tegen voordelen. De Britse poging dit te repliceren vond géén verbetering — die studie werd niet gepubliceerd. Dit artikel werd de feitelijke mondiale standaard."
+    body: "Officiële titel: 'Clinical management of gender identity disorder in adolescents: a protocol on psychological and paediatric endocrinology aspects.' Gepresenteerd op het 4e Ferring Pharmaceuticals International Paediatric Endocrinology Symposium, Parijs 2006. Acknowledgements: 'The authors are very grateful to Ferring Pharmaceuticals for the financial support of studies on the treatment of adolescents with gender identity disorders.' Botdichtheidsprobleem erkend maar beschreven als opweegbaar tegen voordelen. De Britse Tavistock-kliniek voerde tussen 2011 en 2014 een replicatiestudie uit met 44 adolescenten. De resultaten toonden geen verbetering. De studie lag jarenlang in een la — pas in 2021 werd ze gepubliceerd, na een campagne van onderzoeker Michael Biggs die de resultaten in 2019 had ontdekt. Het Cass Review bevestigde de bevindingen in 2024. Dit artikel werd de feitelijke mondiale standaard."
   },
   ferring: {
     name: "Ferring Pharmaceuticals",
     role: "Sponsor + producent triptoreline (Gonapeptyl/Diphereline)",
     tags: ["geld", "macht"],
-    body: "Zwitsers-Deens farmaceutisch bedrijf. Produceert triptoreline (Gonapeptyl/Diphereline) — precies de GnRHa die het Dutch Protocol aanbeveelt. Organiseerde het 4e Ferring Pharmaceuticals International Paediatric Endocrinology Symposium in Parijs (2006) waarop het sleutelartikel werd gepresenteerd. Betaalde de publicatiekosten van het symposiumvolume in het EJE. Betaalde twee junior onderzoeksposities bij VUmc. Exacte totaalbedrag is nooit openbaar gemaakt. Cohen-Kettenis weigerde vragen over de hoogte van de financiering te beantwoorden."
+    body: "Zwitsers-Deens farmaceutisch bedrijf. Produceert triptoreline (Gonapeptyl/Diphereline) — precies de GnRHa die het Dutch Protocol aanbeveelt. Organiseerde het 4e Ferring Pharmaceuticals International Paediatric Endocrinology Symposium in Parijs (2006) waarop het sleutelartikel werd gepresenteerd. Betaalde de publicatiekosten van het symposiumvolume in het EJE. Betaalde twee junior onderzoeksposities bij VUmc — naar schatting €250.000 tot €320.000 in totaal, op basis van gangbare AIO-salarissen inclusief werkgeverslasten in die periode. Exacte totaalbedrag is nooit openbaar gemaakt. Cohen-Kettenis weigerde vragen over de hoogte van de financiering te beantwoorden."
   },
   wpath: {
     name: "WPATH — World Professional Association for Transgender Health",
@@ -654,13 +670,13 @@ const data = {
     name: "Michael Biggs / SEGM (2022–2023)",
     role: "Internationaal wetenschappelijke kritiek",
     tags: ["wetenschap", "kritiek"],
-    body: "Oxford-socioloog Michael Biggs publiceerde in 2022 een gedetailleerde analyse van het Dutch Protocol: 'Origins and Evidence'. SEGM (Society for Evidence-based Gender Medicine, opgericht 2019) financierde de Levine/Abbruzzese/Mason-analyse (2023): 'The Myth of Reliable Research in Pediatric Gender Medicine'. Drie methodologische biases: (1) uitsluitend succesvolle cases geselecteerd, (2) genderdysforieresolutie gemeten via omgedraaide schaal, (3) gelijktijdige psychotherapie maakt het onmogelijk effecten te scheiden. Opmerking: SEGM is omstreden; gebruik de primaire publicaties, niet SEGM als autoriteit."
+    body: "Oxford-socioloog Michael Biggs publiceerde in 2022 een gedetailleerde analyse van het Dutch Protocol: 'Origins and Evidence' (Journal of Sex & Marital Therapy). SEGM (Society for Evidence-based Gender Medicine, opgericht 2019) financierde de Levine/Abbruzzese/Mason-analyse (2023): 'The Myth of Reliable Research in Pediatric Gender Medicine'. Drie methodologische biases in de VUmc-studies: (1) uitsluitend succesvolle cases geselecteerd, (2) genderdysforieresolutie gemeten via omgedraaide schaal, (3) gelijktijdige psychotherapie maakt het onmogelijk effecten te scheiden. Biggs ontdekte in 2019 ook dat de Britse Tavistock-replicatiestudie jarenlang ongepubliceerd bleef."
   },
   hertzberger: {
     name: "Rosanne Hertzberger (NSC) — moties feb. 2024",
     role: "Kamerlid NSC · dec. 2023 – nov. 2024",
     tags: ["politiek"],
-    body: "Rosanne Yente Hertzberger (1984), microbioloog, NRC-columnist 2009-2023, Kamerlid NSC december 2023 tot november 2024. Trad af na onacceptabele uitlatingen van kabinetsleden. Diende twee moties in (15 februari 2024): (1) data verzamelen over diagnoses en behandelingen, (2) onderzoek gezondheidsuitkomsten Dutch Protocol vergelijken met andere Europese landen. Beide aangenomen. Minister Dijkstra (D66) ontraadde de moties. Dit leidde uiteindelijk tot de Gezondheidsraad-adviesaanvraag."
+    body: "Rosanne Yente Hertzberger (1984), microbioloog, NRC-columnist 2009-2023, Kamerlid NSC december 2023 tot november 2024. Diende twee moties in (15 februari 2024): (1) data verzamelen over diagnoses en behandelingen, (2) onderzoek gezondheidsuitkomsten Dutch Protocol vergelijken met andere Europese landen. Beide aangenomen. Minister Dijkstra (D66) ontraadde de moties. Dit leidde uiteindelijk tot de Gezondheidsraad-adviesaanvraag."
   },
   cass: {
     name: "Cass Review — VK april 2024",
@@ -668,17 +684,23 @@ const data = {
     tags: ["wetenschap", "kritiek"],
     body: "Vierjaarlijks onafhankelijk onderzoek in opdracht van NHS England door dr. Hilary Cass. Conclusie: 'het bewijs is onvoldoende om routinematig gebruik van puberteitsremmers en cross-sekse hormonen te rechtvaardigen.' Aanbeveling: psychosociale interventies eerst, medische behandeling in strikt onderzoeksverband. VK, Zweden, Finland, Denemarken en Noorwegen stopten of beperkten sterk. Nederland beschouwde de Cass Review aanvankelijk als politiek gemotiveerd en volgde niet."
   },
+  smids: {
+    name: "Jilles Smids",
+    role: "Medisch ethicus · Erasmus MC Rotterdam",
+    tags: ["ethiek", "wetenschap", "kritiek"],
+    body: "Dr. Jilles Smids, docent en onderzoeker filosofie en ethiek bij het Erasmus Medisch Centrum. Een van de actiefste Nederlandse academische critici van het Dutch Protocol. NTVG 2023 (met Vankrunkelsven): vijf problemen met de klinische les over genderincongruentie bij jongeren. Die vijf problemen: (1) de behandeling voldoet niet aan de vereisten voor standaardzorg gezien het gebrek aan bewijs; (2) geen onderscheid gemaakt tussen vroeg-kinderlijke en adolescente genderdysforie; (3) de claim dat 98% doorgaat naar cross-seksehormonen is ongegrond zoals gepresenteerd; (4) puberteitsremmers belemmeren mogelijk juist de tijd voor reflectie in plaats van die te vergemakkelijken; (5) onjuiste informatie over het effect van GnRH-analogen op de hersenontwikkeling. NJB 2023 (met Smeehuijzen en Hoekstra): juridische bedenkingen bij het Dutch Protocol. Family & Law 2025 (met Smeehuijzen en Hoekstra): Engelstalige versie, internationaal gepubliceerd. NTVG 2025 (solo): internationale kritiek op het Dutch Protocol — tijd voor verandering van de Nederlandse richtlijn. JAMA 2025 (met Gorin en Lantos): pleidooi voor evidence-based en ethische kindergendergeneeskunde. Journal of Sexual Medicine 2025 (met Clayton en McDeavitt): brief over timing van puberteitsremming en seksueel functioneren na chirurgie. American Journal of Bioethics 2025 (met Gorin): over fouten en omissies in kindergendergeneeskunde. Smids publiceert zowel in Nederlandse als internationale toptijdschriften en is daarmee een van de weinige Nederlandse academici die dit debat internationaal voert."
+  },
   smeehuijzen: {
-    name: "Smeehuijzen, Smids & Hoekstra — NJB dec. 2025",
-    role: "Juridische kritiek op Gezondheidsraad-commissie",
+    name: "Smeehuijzen — NJB 2023 & 2025",
+    role: "Juridische kritiek op Dutch Protocol en Gezondheidsraad-commissie",
     tags: ["kritiek", "politiek", "wetenschap"],
-    body: "Prof. mr. J.L. Smeehuijzen (hoogleraar privaatrecht VU), dr. J. Smids (filosofie/ethiek Erasmus MC), mr. C. Hoekstra. Eerdere publicatie NJB 2023: Dutch Protocol voldoet niet aan eisen voor een leidend protocol — niet evidence-based, medisch-ethisch te zwaar geladen, niet in adequaat proces tot stand gekomen. NJB december 2025: Gezondheidsraad-commissieleden zijn ook betrokken bij onderzoek of behandeling op dit gebied. 'De helft van de commissie is op een wezenlijke manier verbonden met de interventie die zij moet beoordelen.' SGP en ChristenUnie dienden Kamervragen in."
+    body: "Prof. mr. J.L. Smeehuijzen, hoogleraar privaatrecht aan de Vrije Universiteit Amsterdam. NJB 2023 (met dr. J. Smids, filosofie/ethiek Erasmus MC, en mr. C. Hoekstra): 'Transgenderzorg aan kinderen — juridische bedenkingen bij het Dutch Protocol (2018).' Conclusie: het protocol voldoet niet aan de eisen voor een leidend medisch protocol — niet evidence-based, medisch-ethisch te zwaar geladen, niet in een adequaat proces tot stand gekomen. NJB december 2025 (Smeehuijzen alleen): analyse van de samenstelling van de Gezondheidsraad-commissie. Conclusie: 'De helft van de commissie is op een wezenlijke manier verbonden met de interventie die zij moet beoordelen.' Naar aanleiding hiervan werden Kamervragen ingediend in januari 2026."
   },
   commissie: {
     name: "Gezondheidsraad-commissie Transgenderzorg jongeren",
     role: "Ingesteld 5 februari 2025 · Advies verwacht Q2 2026",
     tags: ["macht", "kritiek"],
-    body: "Voorzitter: Prof. dr. O.M. Dekkers (LUMC, methodologie). Leden met directe binding aan de praktijk die beoordeeld wordt: Dr. T.C. van de Grift (universitair docent Amsterdam UMC — publiceerde meerdere papers met het Amsterdam UMC-genderteam). Drs. K. Horsnell (arts/psycholoog Check-in Genderzorg, actieve genderzorgaanbieder). Prof. dr. H.L. Claahsen (structureel geraadpleegd) — hoogleraar Geslacht & Gender + voorzitter Radboudumc Expertisecentrum voor Geslacht & Gender. Dr. N.M. van Mello (structureel geraadpleegd) — gynaecoloog Amsterdam UMC. Prof. dr. M.C. de Vries sprak in 2019 over transgenderkinderen en hun 'onvoorwaardelijk recht op genderbevestigende behandeling.'"
+    body: "Voorzitter: Prof. dr. O.M. Dekkers (LUMC, methodologie). Leden met directe binding aan de praktijk die beoordeeld wordt: Dr. T.C. van de Grift (universitair docent Amsterdam UMC — publiceerde meerdere papers met het Amsterdam UMC-genderteam). Drs. K. Horsnell (arts/psycholoog Check-in Genderzorg, actieve genderzorgaanbieder). Prof. dr. H.L. Claahsen (structureel geraadpleegd) — hoogleraar Geslacht & Gender + voorzitter Radboudumc Expertisecentrum voor Geslacht & Gender. Dr. N.M. van Mello (structureel geraadpleegd) — gynaecoloog Amsterdam UMC. Prof. dr. M.C. de Vries sprak in 2019 over transgenderkinderen en hun 'onvoorwaardelijk recht op genderbevestigende behandeling.' Dr. S.M. Burke — senior onderzoeker Universitair Centrum voor Psychiatrie, UMCG Groningen. Burke concludeerde in 2023 tegenover Zembla dat het hersenonderzoek dat Delemarre-van de Waal in 2006 aankondigde nooit heeft plaatsgevonden. Ze is actief als onderzoeker in het transgenderveld en heeft publiekelijk kritische vragen gesteld over de evidence base."
   },
   kamervragen2026: {
     name: "Parlementaire vragen over commissie-onafhankelijkheid — jan. 2026",
